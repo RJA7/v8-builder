@@ -26,7 +26,7 @@ jobs:
     outputs:
       v8_version: ${{ steps.got_version.outputs.version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: got_version
         run: |
           cd $GITHUB_WORKSPACE
@@ -38,12 +38,12 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_linux' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-linux.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: linux_x86-64
           path: |
@@ -60,12 +60,12 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_android_arm_v8' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-android-arm-v8.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: android_arm64-v8a
           path: |
@@ -82,12 +82,12 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_android_arm_v7' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-android-arm-v7.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: android_armeabi-v7a
           path: |
@@ -104,12 +104,12 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_android_x86_64' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-android-x86-64.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: android_x86-64
           path: |
@@ -126,12 +126,12 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_android_x86' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-android-x86.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: android_x86
           path: |
@@ -148,12 +148,12 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_macos' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-macos.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: macos
           path: |
@@ -170,13 +170,13 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'build_windows' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run build script
         shell: cmd
         run: |
           cd %GITHUB_WORKSPACE%
           call .\builders\v8-windows.cmd ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: windows
           path: |
@@ -194,20 +194,20 @@ jobs:
     if: ${{ github.event.inputs.job_to_run == 'headers_and_documentation' }}
     needs: version_reader
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Generate documentation
         run: |
           cd $GITHUB_WORKSPACE
           sh ./builders/v8-docs.sh ${{ needs.version_reader.outputs.v8_version }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: headers
           path: '~/v8/v8/include'
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: license
           path: '~/v8/v8/LICENSE.v8'
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: documentation
           path: '~/docs'
@@ -222,7 +222,7 @@ jobs:
       build_macos, build_windows, headers_and_documentation
     ]
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           path: 'v8'
       - name: Make zip
