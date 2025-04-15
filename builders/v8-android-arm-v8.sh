@@ -22,6 +22,8 @@ cd ~
 echo "=====[ Getting Depot Tools ]====="	
 git clone -q https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH=$(pwd)/depot_tools:$PATH
+export DEPOT_TOOLS_WIN_TOOLCHAIN=0
+export GYP_GENERATORS=ninja
 gclient
 
 
@@ -38,7 +40,8 @@ gclient sync
 
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py arm64.release -vv -- '
+mkdir -p out.gn/arm64.release
+gn gen out.gn/arm64.release --args='
 target_os = "android"
 target_cpu = "arm64"
 v8_target_cpu = "arm64"
