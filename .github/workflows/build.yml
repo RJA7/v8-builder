@@ -29,8 +29,7 @@ jobs:
       - uses: actions/checkout@v4
       - id: got_version
         run: |
-          cd $GITHUB_WORKSPACE
-          echo "::set-output name=version::$(<./V8_VERSION)"
+          echo "version=$(<./V8_VERSION)" >> $GITHUB_OUTPUT
 
   build_linux:
     name: Linux
@@ -47,12 +46,8 @@ jobs:
         with:
           name: linux_x86-64
           path: |
-            ~/v8/v8/out.gn/x64.release/*.so
-            ~/v8/v8/out.gn/x64.release/*.dat
-            ~/v8/v8/out.gn/x64.release/bytecode_builtins_list_generator
-            ~/v8/v8/out.gn/x64.release/gen-regexp-special-case
-            ~/v8/v8/out.gn/x64.release/mksnapshot
-            ~/v8/v8/out.gn/x64.release/torque
+            ~/v8_output/lib/libv8_monolith.a
+            ~/v8_output/include/
 
   build_android_arm_v8:
     name: Android (arm64-v8a)
@@ -69,12 +64,8 @@ jobs:
         with:
           name: android_arm64-v8a
           path: |
-            ~/v8/v8/out.gn/arm64.release/*.so
-            ~/v8/v8/out.gn/arm64.release/*.dat
-            ~/v8/v8/out.gn/arm64.release/clang_*/bytecode_builtins_list_generator
-            ~/v8/v8/out.gn/arm64.release/clang_*/gen-regexp-special-case
-            ~/v8/v8/out.gn/arm64.release/clang_*/mksnapshot
-            ~/v8/v8/out.gn/arm64.release/clang_*/torque
+            ~/v8_output/lib/libv8_monolith.a
+            ~/v8_output/include/
 
   build_android_arm_v7:
     name: Android (armeabi-v7a)
@@ -91,12 +82,8 @@ jobs:
         with:
           name: android_armeabi-v7a
           path: |
-            ~/v8/v8/out.gn/arm.release/*.so
-            ~/v8/v8/out.gn/arm.release/*.dat
-            ~/v8/v8/out.gn/arm.release/clang_*/bytecode_builtins_list_generator
-            ~/v8/v8/out.gn/arm.release/clang_*/gen-regexp-special-case
-            ~/v8/v8/out.gn/arm.release/clang_*/mksnapshot
-            ~/v8/v8/out.gn/arm.release/clang_*/torque
+            ~/v8_output/lib/libv8_monolith.a
+            ~/v8_output/include/
 
   build_android_x86_64:
     name: Android (x86-64)
@@ -113,12 +100,8 @@ jobs:
         with:
           name: android_x86-64
           path: |
-            ~/v8/v8/out.gn/x64.release/*.so
-            ~/v8/v8/out.gn/x64.release/*.dat
-            ~/v8/v8/out.gn/x64.release/clang_*/bytecode_builtins_list_generator
-            ~/v8/v8/out.gn/x64.release/clang_*/gen-regexp-special-case
-            ~/v8/v8/out.gn/x64.release/clang_*/mksnapshot
-            ~/v8/v8/out.gn/x64.release/clang_*/torque
+            ~/v8_output/lib/libv8_monolith.a
+            ~/v8_output/include/
 
   build_android_x86:
     name: Android (x86)
@@ -135,12 +118,8 @@ jobs:
         with:
           name: android_x86
           path: |
-            ~/v8/v8/out.gn/ia32.release/*.so
-            ~/v8/v8/out.gn/ia32.release/*.dat
-            ~/v8/v8/out.gn/ia32.release/clang_*/bytecode_builtins_list_generator
-            ~/v8/v8/out.gn/ia32.release/clang_*/gen-regexp-special-case
-            ~/v8/v8/out.gn/ia32.release/clang_*/mksnapshot
-            ~/v8/v8/out.gn/ia32.release/clang_*/torque
+            ~/v8_output/lib/libv8_monolith.a
+            ~/v8_output/include/
 
   build_macos:
     name: macOS
@@ -157,12 +136,8 @@ jobs:
         with:
           name: macos
           path: |
-            ~/v8/v8/out.gn/x64.release/*.dylib
-            ~/v8/v8/out.gn/x64.release/*.dat
-            ~/v8/v8/out.gn/x64.release/bytecode_builtins_list_generator
-            ~/v8/v8/out.gn/x64.release/gen-regexp-special-case
-            ~/v8/v8/out.gn/x64.release/mksnapshot
-            ~/v8/v8/out.gn/x64.release/torque
+            ~/v8_output/lib/libv8_monolith.a
+            ~/v8_output/include/
 
   build_windows:
     name: Windows
