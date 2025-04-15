@@ -43,6 +43,7 @@ target_os = "android"
 target_cpu = "arm64"
 v8_target_cpu = "arm64"
 symbol_level = 1
+enable_resource_allowlist_generation  = false
 
 is_debug = false
 is_component_build = false
