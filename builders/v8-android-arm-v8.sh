@@ -42,7 +42,6 @@ python ./tools/dev/v8gen.py arm64.release -vv -- '
 target_os = "android"
 target_cpu = "arm64"
 v8_target_cpu = "arm64"
-symbol_level = 1
 enable_resource_allowlist_generation  = false
 
 is_debug = false
@@ -59,6 +58,7 @@ v8_static_library = true
 use_custom_libcxx = false
 use_thin_archives = true
 
+v8_enable_pgo_generate = false
 v8_enable_future = false
 v8_use_external_startup_data = false
 v8_enable_i18n_support = true
