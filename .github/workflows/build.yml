@@ -1,13 +1,14 @@
 name: Build V8
 
 on:
-  push:
-    branches: [ master ]
-    paths:
-    - 'V8_VERSION'
-    - 'builders/**'
-    - '.github/workflows/build.yml'
-
+  workflow_dispatch:
+    inputs:
+      job_to_run:
+        description: "Select the job you want to run"
+        required: true
+        default: "build_android_arm_v8"
+        options:
+          - build_android_arm_v8
 jobs:
 
   version_reader:
