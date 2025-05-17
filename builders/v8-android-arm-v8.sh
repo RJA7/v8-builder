@@ -44,6 +44,8 @@ target_os = "android"
 target_cpu = "arm64"
 v8_target_cpu = "arm64"
 
+v8_enable_i18n_support = true
+
 # ✅ Official and PGO flags (IMPORTANT FIX)
 is_debug = false
 is_component_build = false
@@ -69,7 +71,6 @@ use_custom_libcxx = false
 # ✅ Disable all unneeded features
 v8_enable_future = false
 v8_use_external_startup_data = false
-v8_enable_i18n_support = false
 v8_enable_webassembly = false
 v8_enable_gdbjit = false
 v8_enable_disassembler = false
